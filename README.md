@@ -1,16 +1,16 @@
 # fwpd
 
-FIXME: description
+The FWPD has a fancy new database technology called CSV (comma-separated values). Your job is to parse this state-of-the-art CSV and analyze it for potential vampires. We’ll do that by filtering on each suspect’s glitter index, a 0–10 prediction of the suspect’s vampireness developed by some teenage girl.
 
 ## Installation
 
-Download from http://example.com/FIXME.
+Clone de project
 
 ## Usage
 
-FIXME: explanation
-
-    $ java -jar fwpd-0.1.0-standalone.jar [args]
+```
+lein repl
+```
 
 ## Options
 
@@ -18,7 +18,9 @@ FIXME: listing of options this app accepts.
 
 ## Examples
 
-...
+```
+    (glitter-filter 3 (mapify (parse (slurp filename))))
+```
 
 ### Bugs
 
