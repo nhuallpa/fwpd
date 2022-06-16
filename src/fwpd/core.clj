@@ -33,3 +33,35 @@
 (defn glitter-filter
   [minimum-glitter records]
   (filter #(>= (:glitter-index %) minimum-glitter) records))
+
+;; Write a function, append, which will append a new suspect to your list of suspects.
+(def suspects (glitter-filter 3 (mapify (parse (slurp filename)))))
+
+(defn append
+  [suspects & other-suspects]
+  (into suspects other-suspects))
+
+(append suspects {:name "Carlos", :glitter-index 1} {:name "Diego", :glitter-index 3})
+
+;; Write a function, validate, which will check that :name and :glitter-index are present 
+;; when you append. The validate function should accept two arguments: a map of keywords 
+;; to validating functions, similar to conversions, and the record to be validated.
+
+(defn not-exist?
+  [value]
+  (not (nil? value)))
+
+(def validators {:name not-exist?
+                 :glitter-index not-exist?})
+
+(defn validate
+  " Validate suspect structure {:name aName :glitter-index aNumber} but not type
+  validators : A map of keys to validator's functions
+  suspect    : A map structure to validate"
+  [validators suspect]
+  (reduce (fn [valid [key validator]]
+            (and valid (validator (and (get suspect key) key)))) 
+          true
+          validators)) ; revisar
+
+(validate validators {:name "Carlos", :glitter-index 1})

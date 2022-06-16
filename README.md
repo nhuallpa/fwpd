@@ -12,15 +12,18 @@ Clone de project
 lein repl
 ```
 
-## Options
-
-FIXME: listing of options this app accepts.
-
 ## Examples
 
 ```
     (glitter-filter 3 (mapify (parse (slurp filename))))
 ```
+
+Turn the result of your glitter filter into a list of names.
+```
+    (map :name (glitter-filter 3 (mapify (parse (slurp filename)))))
+```
+
+
 
 ### Bugs
 
